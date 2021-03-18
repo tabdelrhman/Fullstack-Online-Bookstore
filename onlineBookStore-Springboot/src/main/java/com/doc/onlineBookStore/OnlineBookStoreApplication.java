@@ -9,7 +9,6 @@ public class OnlineBookStoreApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OnlineBookStoreApplication.class, args);
-		System.out.println();
 	}
 
 }
