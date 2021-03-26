@@ -10,10 +10,12 @@ import { map } from 'rxjs/operators';
 export class BookService {
 
   private baseUrl = "http://localhost:8081/api/v1/books" ;
+
   constructor(private httpClient: HttpClient) { }
 
-  getBooks(): Observable<Book[]>{
-  return this.httpClient.get<GetResponseBooks>(this.baseUrl).pipe(
+  getBooks(categoryId: number): Observable<Book[]>{
+    const searchUrl = `${this.baseUrl}/search/categoryId?id=${categoryId}`;
+  return this.httpClient.get<GetResponseBooks>(searchUrl).pipe(
     map( response => response._embedded.books)
   )
   }
