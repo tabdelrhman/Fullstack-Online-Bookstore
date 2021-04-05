@@ -24,7 +24,16 @@ export class BookListComponent implements OnInit {
   }
 
   getListBooks(){
+    const hasSearchKeyword: boolean = this._activatedRoute.snapshot.paramMap.has('keyword');
 
+    if (hasSearchKeyword) {
+      this.getListBookByKeywordSearch();
+    } else {
+      this.getListBooksByCategory();
+    }
+  }
+
+  getListBooksByCategory(){
     const hasCategoryId : Boolean = this._activatedRoute.snapshot.paramMap.has('id');
     if (hasCategoryId) {
       this.categoryId = +this._activatedRoute.snapshot.paramMap.get('id');
@@ -39,6 +48,15 @@ export class BookListComponent implements OnInit {
     )
   }
 
+  getListBookByKeywordSearch(){
+    const keyword: string = this._activatedRoute.snapshot.paramMap.get('keyword');
+    this.bookService.searchBooks(keyword).subscribe(
+      data => {
+        this.books = data;
+      }
+    )
+
+  }
 
 
 }

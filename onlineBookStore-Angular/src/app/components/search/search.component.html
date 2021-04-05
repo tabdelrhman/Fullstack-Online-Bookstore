@@ -1,0 +1,10 @@
+<div class="col-md-12">
+  <div class="row">
+    <div class="col-md-10">
+      <input (keyup.enter)="searchBooks(inputSearch.value)" type="text" #inputSearch class="form-control" placeholder="Search books.."/>
+    </div>
+    <div class="col-md-2">
+      <button (click)="searchBooks(inputSearch.value)"class="btn btn-primary">Search</button>
+    </div>
+  </div>
+</div>
